@@ -1,0 +1,1240 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Color Variables */
+:root {
+  --primary-pink: #E91E63;
+  --light-pink: #F8BBD0;
+  --pale-pink: #FCE4EC;
+  --white: #FFFFFF;
+  --gray: #666666;
+  --dark-gray: #333333;
+  --accent-gray: #9E9E9E;
+}
+
+/* Typography */
+.logo-main {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.logo-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+/* Navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  padding: 1rem 0;
+}
+
+.navbar.scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo .logo-main {
+  color: var(--primary-pink);
+  font-size: 2rem;
+}
+
+.nav-logo .logo-sub {
+  color: var(--gray);
+  font-size: 0.8rem;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--dark-gray);
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--primary-pink);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-pink);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.contact-btn {
+  background: var(--primary-pink);
+  color: white !important;
+  padding: 0.7rem 1.5rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.contact-btn::after {
+  display: none;
+}
+
+.contact-btn:hover {
+  background: #c2185b;
+  transform: translateY(-2px);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background: var(--primary-pink);
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.hero-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(233, 30, 99, 0.8), rgba(248, 187, 208, 0.6));
+  z-index: -1;
+}
+
+.hero-content {
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-logo {
+  margin-bottom: 2rem;
+}
+
+.main-logo {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.logo-subtitle {
+  font-size: 1.2rem;
+  letter-spacing: 3px;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.decorative-elements {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.hero-slogan {
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.quote-mark {
+  font-size: 3rem;
+  color: var(--light-pink);
+  vertical-align: -10px;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-contact {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-info {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.contact-info:hover {
+  transform: scale(1.05);
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  border: 2px solid white;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.cta-button:hover {
+  background: white;
+  color: var(--primary-pink);
+  transform: translateY(-3px);
+}
+
+/* Section Styles */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  color: var(--primary-pink);
+  margin-bottom: 1rem;
+}
+
+.title-decoration {
+  font-size: 2rem;
+  color: var(--light-pink);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--gray);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Presentation Section */
+.presentation {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--pale-pink), var(--white));
+}
+
+.presentation-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.profile-image {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.profile-image:hover {
+  transform: scale(1.02);
+}
+
+.presentation-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.intro-text {
+  margin-bottom: 2rem;
+}
+
+.commitments {
+  margin-top: 2rem;
+}
+
+.commitments h3 {
+  color: var(--primary-pink);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.commitment-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.commitment-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(248, 187, 208, 0.2);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.commitment-item:hover {
+  transform: translateX(10px);
+}
+
+.commitment-item i {
+  color: var(--primary-pink);
+  font-size: 1.2rem;
+  width: 20px;
+}
+
+.testimonial {
+  background: rgba(233, 30, 99, 0.1);
+  padding: 3rem;
+  border-radius: 20px;
+  text-align: center;
+  border-left: 5px solid var(--primary-pink);
+}
+
+.testimonial-text {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--dark-gray);
+  position: relative;
+  padding: 0 2rem;
+}
+
+.quote-large {
+  font-size: 4rem;
+  color: var(--light-pink);
+  position: absolute;
+}
+
+.quote-large:first-child {
+  top: -20px;
+  left: -10px;
+}
+
+.quote-large:last-child {
+  bottom: -40px;
+  right: -10px;
+}
+
+.testimonial-date {
+  margin-top: 1rem;
+  color: var(--primary-pink);
+  font-weight: 600;
+}
+
+/* Formules Section */
+.formules {
+  padding: 6rem 0;
+  background: var(--white);
+}
+
+.formules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.formule-card {
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.formule-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(233, 30, 99, 0.15);
+}
+
+.formule-card.featured {
+  border-color: var(--primary-pink);
+  position: relative;
+}
+
+.formule-card.featured::before {
+  content: 'Recommandée';
+  position: absolute;
+  top: 20px;
+  right: -30px;
+  background: var(--primary-pink);
+  color: white;
+  padding: 5px 40px;
+  transform: rotate(45deg);
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.card-header {
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--pale-pink), var(--light-pink));
+}
+
+.card-icon {
+  font-size: 3rem;
+  color: var(--primary-pink);
+  margin-bottom: 1rem;
+}
+
+.card-header h3 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  color: var(--primary-pink);
+  margin-bottom: 1rem;
+}
+
+.card-subtitle {
+  color: var(--gray);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.card-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.formule-card:hover .card-image img {
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: 2rem;
+}
+
+.card-content h4 {
+  color: var(--primary-pink);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.feature-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.feature-list i {
+  color: var(--light-pink);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.result-text {
+  font-style: italic;
+  color: var(--dark-gray);
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: var(--accent-gray);
+  margin-top: 1rem;
+}
+
+/* Tarifs Section */
+.tarifs {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--primary-pink), #c2185b);
+  color: white;
+}
+
+.tarifs .section-title {
+  color: white;
+}
+
+.tarifs .title-decoration {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.tarifs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.tarif-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tarif-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.tarif-card.featured {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.tarif-card .card-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tarif-card h3 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.price-note {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  color: var(--primary-pink);
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Options Section */
+.options {
+  padding: 6rem 0;
+  background: var(--pale-pink);
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+}
+
+.option-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+}
+
+.option-header {
+  background: var(--primary-pink);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.option-header h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.option-price {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.option-image {
+  height: 250px;
+  overflow: hidden;
+}
+
+.option-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.option-card:hover .option-image img {
+  transform: scale(1.05);
+}
+
+.option-content {
+  padding: 2rem;
+}
+
+.option-intro {
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  color: var(--primary-pink);
+}
+
+.option-features {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.option-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.option-features i {
+  color: var(--light-pink);
+  margin-top: 3px;
+}
+
+/* Coaching Section */
+.coaching {
+  padding: 6rem 0;
+  background: var(--white);
+}
+
+.coaching-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.coaching-questions {
+  margin-bottom: 2rem;
+}
+
+.coaching-questions p {
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+  color: var(--dark-gray);
+}
+
+.coaching-intro {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: var(--pale-pink);
+  border-radius: 15px;
+  border-left: 4px solid var(--primary-pink);
+}
+
+.coaching-services h3 {
+  color: var(--primary-pink);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.coaching-list {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.coaching-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.coaching-list i {
+  color: var(--light-pink);
+  margin-top: 3px;
+}
+
+.coaching-flexibility {
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.coaching-quote {
+  background: var(--primary-pink);
+  color: white;
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-style: italic;
+  margin: 0;
+}
+
+.coaching-pricing {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.coaching-price-card {
+  text-align: center;
+}
+
+.coaching-price-card.featured {
+  transform: scale(1.1);
+}
+
+.price-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-pink), #c2185b);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.price-circle:hover {
+  transform: scale(1.05);
+}
+
+.price-circle .price {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.price-circle .unit {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.coaching-price-card.featured .price-circle {
+  width: 180px;
+  height: 180px;
+  background: linear-gradient(135deg, #c2185b, var(--primary-pink));
+}
+
+/* Contact Section */
+.contact {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--pale-pink), var(--light-pink));
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contact-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+}
+
+.contact-card i {
+  font-size: 2rem;
+  color: var(--primary-pink);
+  margin-bottom: 1rem;
+}
+
+.contact-card h3 {
+  color: var(--dark-gray);
+  margin-bottom: 1rem;
+}
+
+.contact-card a {
+  color: var(--primary-pink);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-card a:hover {
+  text-decoration: underline;
+}
+
+/* Contact Form */
+.contact-form {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-pink);
+  box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+}
+
+.form-group label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: var(--gray);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background: white;
+  padding: 0 0.5rem;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group select:focus + label,
+.form-group select:valid + label,
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label {
+  top: -0.5rem;
+  font-size: 0.8rem;
+  color: var(--primary-pink);
+}
+
+.submit-btn {
+  width: 100%;
+  background: var(--primary-pink);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.submit-btn:hover {
+  background: #c2185b;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+}
+
+/* Footer */
+.footer {
+  background: var(--dark-gray);
+  color: white;
+  padding: 3rem 0 1rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.footer-logo .logo-main {
+  color: var(--primary-pink);
+  font-size: 2rem;
+}
+
+.footer-logo .logo-sub {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-contact {
+  text-align: right;
+}
+
+.footer-contact p {
+  margin-bottom: 0.5rem;
+}
+
+.footer-contact a {
+  color: var(--primary-pink);
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.footer-slogan {
+  color: var(--light-pink);
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--primary-pink);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: #c2185b;
+  transform: translateY(-3px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeInUp {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-contact {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .presentation-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .coaching-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footer-contact {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    padding: 2rem 0;
+  }
+
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  .main-logo {
+    font-size: 3rem;
+  }
+  
+  .hero-slogan {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .formules-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tarifs-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .coaching-pricing {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .main-logo {
+    font-size: 2.5rem;
+  }
+  
+  .hero-slogan {
+    font-size: 1.2rem;
+  }
+  
+  .hero-contact {
+    gap: 0.5rem;
+  }
+  
+  .contact-info a,
+  .contact-info {
+    font-size: 0.9rem;
+  }
+  
+  .formule-card,
+  .option-card {
+    margin: 0 10px;
+  }
+  
+  .coaching-pricing {
+    flex-direction: column;
+  }
+  
+  .price-circle {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .coaching-price-card.featured .price-circle {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+a:focus {
+  outline: 2px solid var(--primary-pink);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .navbar,
+  .back-to-top {
+    display: none;
+  }
+  
+  .hero {
+    height: auto;
+    padding: 2rem 0;
+  }
+  
+  * {
+    background: white !important;
+    color: black !important;
+  }
+}
