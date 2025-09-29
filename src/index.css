@@ -1,17 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Outfit:wght@300;400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
-    @apply bg-slate-950 text-slate-100 antialiased;
+    font-family: "Outfit", sans-serif;
+    @apply bg-rose-50 text-rose-950 antialiased;
+  }
+
+  .font-script {
+    font-family: "Dancing Script", cursive;
   }
 
   a {
-    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-rose-50;
   }
 }
