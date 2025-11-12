@@ -1,3 +1,14 @@
+/* Brittany Signature Font */
+@font-face {
+  font-family: 'Brittany Signature';
+  src: url('assets/BrittanySignature-Regular.woff2') format('woff2'),
+       url('assets/BrittanySignature-Regular.woff') format('woff'),
+       url('assets/BrittanySignature-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Global Styles */
 * {
   margin: 0;
@@ -12,9 +23,14 @@ body {
   overflow-x: hidden;
 }
 
+/* All headings use Brittany Signature */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Brittany Signature', 'Brittany Signature', cursive;
+}
+
 /* Typography Helpers */
 .logo-main {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Brittany Signature', 'Brittany Signature', cursive;
   font-size: 2.5rem;
   font-weight: 700;
 }
@@ -33,7 +49,7 @@ body {
 
 /* Color Variables */
 :root {
-  --primary-pink: #E91E63;
+  --primary-pink: #D81B60;
   --light-pink: #F8BBD0;
   --pale-pink: #FCE4EC;
   --white: #FFFFFF;
@@ -135,7 +151,7 @@ body {
 }
 
 .contact-btn:hover {
-  background: #c2185b;
+  background: #F8BBD0;
   transform: translateY(-2px);
 }
 
@@ -192,7 +208,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(233, 30, 99, 0.8), rgba(248, 187, 208, 0.6));
+  background: linear-gradient(135deg, rgba(248, 187, 208, 0.8), rgba(248, 187, 208, 0.6));
   z-index: -1;
 }
 
@@ -207,7 +223,7 @@ body {
 }
 
 .main-logo {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Brittany Signature', 'Brittany Signature', cursive;
   font-size: 4rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -297,7 +313,7 @@ body {
 }
 
 .section-title {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Brittany Signature', 'Brittany Signature', cursive;
   font-size: 3rem;
   color: var(--primary-pink);
   margin-bottom: 1rem;
@@ -333,7 +349,7 @@ body {
 .profile-image {
   width: 100%;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+  box-shadow: 0 10px 30px rgba(248, 187, 208, 0.2);
   transition: transform 0.3s ease;
 }
 
@@ -386,7 +402,7 @@ body {
 }
 
 .testimonial {
-  background: rgba(233, 30, 99, 0.1);
+  background: rgba(248, 187, 208, 0.1);
   padding: 3rem;
   border-radius: 20px;
   text-align: center;
@@ -433,6 +449,117 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+/* Options Table */
+.options-table-container {
+  max-width: 1000px;
+  margin: 4rem auto 0;
+  text-align: center;
+}
+
+.options-table-title {
+  font-family: 'Brittany Signature', 'Brittany Signature', cursive;
+  font-size: 2.5rem;
+  color: var(--primary-pink);
+  margin-bottom: 0.5rem;
+}
+
+.options-table-subtitle {
+  color: var(--gray);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+
+.options-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(248, 187, 208, 0.15);
+  margin: 0 auto;
+}
+
+.options-table thead {
+  background: linear-gradient(135deg, #FCDEE8, #F8BBD0);
+  color: white;
+}
+
+.options-table th {
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+.options-table tbody tr {
+  border-bottom: 1px solid var(--pale-pink);
+  transition: background-color 0.3s ease;
+}
+
+.options-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.options-table tbody tr:hover {
+  background-color: rgba(248, 187, 208, 0.1);
+}
+
+.options-table td {
+  padding: 2rem;
+  vertical-align: top;
+}
+
+.option-name {
+  width: 30%;
+  font-size: 1.1rem;
+  color: var(--primary-pink);
+  font-weight: 600;
+  text-align: center;
+}
+
+.option-name i {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--light-pink);
+}
+
+.option-description {
+  width: 70%;
+  color: var(--dark-gray);
+  line-height: 1.8;
+}
+
+.option-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.option-features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.option-features-list i {
+  color: var(--light-pink);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.option-intro-text {
+  margin-bottom: 1rem;
+  font-style: italic;
+  color: var(--gray);
 }
 
 .formule-card {
@@ -446,7 +573,7 @@ body {
 
 .formule-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(233, 30, 99, 0.15);
+  box-shadow: 0 20px 40px rgba(248, 187, 208, 0.15);
 }
 
 .formule-card.featured {
@@ -478,10 +605,14 @@ body {
   font-size: 3rem;
   color: var(--primary-pink);
   margin-bottom: 1rem;
+  width: 3rem;
+  height: 3rem;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .card-header h3 {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Brittany Signature', 'Brittany Signature', cursive;
   font-size: 2rem;
   color: var(--primary-pink);
   margin-bottom: 1rem;
@@ -511,6 +642,38 @@ body {
 
 .card-content {
   padding: 2rem;
+}
+
+.formule-price {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--pale-pink);
+}
+
+.formule-price .price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-pink);
+  margin-bottom: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.formule-price .price-note {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin: 0;
+}
+
+.formule-price .popular-badge {
+  display: inline-block;
+  background: var(--primary-pink);
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
 }
 
 .card-content h4 {
@@ -555,7 +718,7 @@ body {
 /* Tarifs Section */
 .tarifs {
   padding: 6rem 0;
-  background: linear-gradient(135deg, var(--primary-pink), #c2185b);
+  background: linear-gradient(135deg, var(--primary-pink), #F8BBD0);
   color: white;
 }
 
@@ -602,7 +765,7 @@ body {
 }
 
 .tarif-card h3 {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Brittany Signature', 'Brittany Signature', cursive;
   font-size: 1.8rem;
   margin-bottom: 1rem;
 }
@@ -813,13 +976,13 @@ body {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary-pink), #c2185b);
+  background: linear-gradient(135deg, var(--primary-pink), #F8BBD0);
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+  box-shadow: 0 10px 30px rgba(248, 187, 208, 0.3);
   transition: transform 0.3s ease;
 }
 
@@ -840,7 +1003,7 @@ body {
 .coaching-price-card.featured .price-circle {
   width: 180px;
   height: 180px;
-  background: linear-gradient(135deg, #c2185b, var(--primary-pink));
+  background: linear-gradient(135deg, #F8BBD0, var(--primary-pink));
 }
 
 /* Contact Section */
@@ -925,7 +1088,7 @@ body {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary-pink);
-  box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+  box-shadow: 0 0 0 3px rgba(248, 187, 208, 0.1);
 }
 
 .form-group label {
@@ -968,9 +1131,9 @@ body {
 }
 
 .submit-btn:hover {
-  background: #c2185b;
+  background: #F8BBD0;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+  box-shadow: 0 5px 15px rgba(248, 187, 208, 0.4);
 }
 
 /* Footer */
@@ -1039,7 +1202,7 @@ body {
   border-radius: 50%;
   cursor: pointer;
   font-size: 1.2rem;
-  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+  box-shadow: 0 4px 15px rgba(248, 187, 208, 0.4);
   transition: all 0.3s ease;
   opacity: 0;
   visibility: hidden;
@@ -1052,7 +1215,7 @@ body {
 }
 
 .back-to-top:hover {
-  background: #c2185b;
+  background: #F8BBD0;
   transform: translateY(-3px);
 }
 
@@ -1156,6 +1319,63 @@ body {
   
   .formules-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .options-table-container {
+    margin: 2rem auto 0;
+    padding: 0 20px;
+  }
+  
+  .options-table-title {
+    font-size: 2rem;
+  }
+  
+  .options-table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .options-table thead {
+    display: none;
+  }
+  
+  .options-table tbody {
+    display: block;
+  }
+  
+  .options-table tbody tr {
+    display: block;
+    margin-bottom: 2rem;
+    border: 1px solid var(--pale-pink);
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 5px 15px rgba(248, 187, 208, 0.1);
+  }
+  
+  .options-table td {
+    display: block;
+    width: 100% !important;
+    padding: 1.5rem;
+  }
+  
+  .option-name {
+    background: linear-gradient(135deg, var(--primary-pink), #F8BBD0);
+    color: white;
+    padding: 1.5rem !important;
+    margin-bottom: 0;
+  }
+  
+  .option-name i {
+    color: white;
+  }
+  
+  .option-name strong {
+    color: white;
+  }
+  
+  .option-description {
+    padding: 1.5rem !important;
   }
   
   .options-grid {

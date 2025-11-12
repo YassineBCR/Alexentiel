@@ -260,19 +260,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Trigger number animation when pricing section is visible
-    const pricingSection = document.querySelector('.tarifs');
-    if (pricingSection) {
-        const pricingObserver = new IntersectionObserver((entries) => {
+    // Trigger number animation when formules section is visible
+    const formulesSection = document.querySelector('.formules');
+    if (formulesSection) {
+        const formulesObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     animateNumbers();
-                    pricingObserver.unobserve(entry.target);
+                    formulesObserver.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.5 });
         
-        pricingObserver.observe(pricingSection);
+        formulesObserver.observe(formulesSection);
     }
 
     // Keyboard navigation accessibility
