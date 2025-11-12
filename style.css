@@ -174,9 +174,9 @@ body {
 }
 
 .hero-background picture {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
 }
 
 .hero-background img {
