@@ -559,11 +559,73 @@ window.addEventListener('scroll', () => {
     ticking = false;
 });
 
+// Encode image URLs with special characters
+function encodeImageUrls() {
+    const images = document.querySelectorAll('img[src*="/assets/"]');
+    images.forEach(img => {
+        const originalSrc = img.getAttribute('src');
+        if (originalSrc && originalSrc.includes('/assets/')) {
+            try {
+                // Split the path to encode only the filename part
+                const url = new URL(originalSrc, window.location.origin);
+                const pathParts = url.pathname.split('/');
+                const filename = pathParts[pathParts.length - 1];
+                
+                // Only encode if filename contains special characters
+                if (filename && (filename.includes(' ') || filename.includes('(') || filename.includes('@') || filename.includes('é'))) {
+                    const encodedFilename = encodeURIComponent(filename);
+                    pathParts[pathParts.length - 1] = encodedFilename;
+                    const newPath = pathParts.join('/');
+                    img.src = newPath;
+                }
+            } catch (e) {
+                // If URL constructor fails, try manual encoding
+                try {
+                    const pathParts = originalSrc.split('/');
+                    const filename = pathParts[pathParts.length - 1];
+                    if (filename && (filename.includes(' ') || filename.includes('(') || filename.includes('@') || filename.includes('é'))) {
+                        const encodedFilename = encodeURIComponent(filename);
+                        pathParts[pathParts.length - 1] = encodedFilename;
+                        img.src = pathParts.join('/');
+                    }
+                } catch (err) {
+                    console.error('Error encoding image URL:', err);
+                }
+            }
+        }
+    });
+}
+
+// Run on page load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', encodeImageUrls);
+} else {
+    encodeImageUrls();
+}
+
 // Error handling for images
 document.addEventListener('error', function(e) {
     if (e.target.tagName === 'IMG') {
-        e.target.style.display = 'none';
-        console.log('Image failed to load:', e.target.src);
+        const src = e.target.src;
+        console.log('Image failed to load:', src);
+        
+        // Try to reload with encoded URL if it contains special characters
+        if (src && src.includes('/assets/') && !src.includes('%')) {
+            try {
+                const pathParts = src.split('/');
+                const filename = pathParts[pathParts.length - 1];
+                if (filename && (filename.includes(' ') || filename.includes('(') || filename.includes('@') || filename.includes('é'))) {
+                    const encodedFilename = encodeURIComponent(filename);
+                    pathParts[pathParts.length - 1] = encodedFilename;
+                    e.target.src = pathParts.join('/');
+                }
+            } catch (err) {
+                console.error('Error re-encoding image URL:', err);
+                e.target.style.display = 'none';
+            }
+        } else {
+            e.target.style.display = 'none';
+        }
     }
 }, true);
 
