@@ -1,9 +1,9 @@
 /* Brittany Signature Font */
 @font-face {
   font-family: 'Brittany Signature';
-  src: url('assets/BrittanySignature-Regular.woff2') format('woff2'),
-       url('assets/BrittanySignature-Regular.woff') format('woff'),
-       url('assets/BrittanySignature-Regular.ttf') format('truetype');
+  src: url('/assets/BrittanySignature-Regular.woff2') format('woff2'),
+       url('/assets/BrittanySignature-Regular.woff') format('woff'),
+       url('/assets/BrittanySignature-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -12,10 +12,10 @@
 /* The Seasons Font */
 @font-face {
   font-family: 'The Seasons';
-  src: url('assets/TheSeasons-Regular.woff2') format('woff2'),
-       url('assets/TheSeasons-Regular.woff') format('woff'),
-       url('assets/TheSeasons-Regular.ttf') format('truetype'),
-       url('assets/TheSeasons-Regular.otf') format('opentype');
+  src: url('/assets/TheSeasons-Regular.woff2') format('woff2'),
+       url('/assets/TheSeasons-Regular.woff') format('woff'),
+       url('/assets/TheSeasons-Regular.ttf') format('truetype'),
+       url('/assets/TheSeasons-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
