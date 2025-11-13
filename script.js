@@ -164,6 +164,71 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
+    // Reviews slider
+    const reviewTrack = document.querySelector('.reviews-track');
+    if (reviewTrack) {
+        const reviewSlider = reviewTrack.closest('.reviews-slider');
+        const dotsContainer = reviewSlider.querySelector('.reviews-dots');
+        const reviewCards = Array.from(reviewTrack.children);
+        let currentReview = 0;
+        let reviewInterval;
+
+        // Create dots
+        reviewCards.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = 'review-dot';
+            if (index === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Afficher l'avis ${index + 1}`);
+            dot.addEventListener('click', () => {
+                currentReview = index;
+                updateReviewsSlider();
+                restartReviewsInterval();
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll('.review-dot');
+
+        const updateReviewsSlider = () => {
+            reviewTrack.style.transform = `translateX(-${currentReview * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots[currentReview]) {
+                dots[currentReview].classList.add('active');
+            }
+        };
+
+        const nextReview = () => {
+            currentReview = (currentReview + 1) % reviewCards.length;
+            updateReviewsSlider();
+        };
+
+        const startReviewsInterval = () => {
+            reviewInterval = setInterval(nextReview, 6000);
+        };
+
+        const restartReviewsInterval = () => {
+            clearInterval(reviewInterval);
+            startReviewsInterval();
+        };
+
+        reviewSlider.addEventListener('mouseenter', () => clearInterval(reviewInterval));
+        reviewSlider.addEventListener('mouseleave', restartReviewsInterval);
+
+        updateReviewsSlider();
+        startReviewsInterval();
+    }
+
+    // Gallery duplication for seamless scroll
+    const galleryTrack = document.querySelector('.gallery-track');
+    if (galleryTrack) {
+        const galleryItems = Array.from(galleryTrack.children);
+        galleryItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            galleryTrack.appendChild(clone);
+        });
+    }
+
     // Loading animation for images
     const images = document.querySelectorAll('img');
     images.forEach(img => {
