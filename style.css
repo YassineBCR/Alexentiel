@@ -9,6 +9,23 @@
   font-display: swap;
 }
 
+/* The Seasons Font */
+@font-face {
+  font-family: 'The Seasons';
+  src: url('assets/TheSeasons-Regular.woff2') format('woff2'),
+       url('assets/TheSeasons-Regular.woff') format('woff'),
+       url('assets/TheSeasons-Regular.ttf') format('truetype'),
+       url('assets/TheSeasons-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Helper class to use The Seasons where needed */
+.seasons-text {
+  font-family: 'The Seasons', serif;
+}
+
 /* Global Styles */
 * {
   margin: 0;
@@ -319,6 +336,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1rem;
 }
 
+/* Use The Seasons for the Presentation section title */
+.presentation .section-title {
+  font-family: 'Brittany Signature', serif;
+}
+
 .title-decoration {
   font-size: 2rem;
   color: var(--light-pink);
@@ -374,6 +396,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary-pink);
   margin-bottom: 1rem;
   font-size: 1.3rem;
+  font-family: 'The Seasons', serif;
 }
 
 .commitment-list {
@@ -450,6 +473,13 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 3rem;
   margin-bottom: 4rem;
+}
+
+/* 4 cards per row on large screens */
+@media (min-width: 1200px) {
+  .formules-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* Options Table */
