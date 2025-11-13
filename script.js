@@ -559,16 +559,20 @@ window.addEventListener('scroll', () => {
     ticking = false;
 });
 
-// Encode image URLs with special characters
+// Encode image URLs with special characters - exécution immédiate
 function encodeImageUrls() {
     const images = document.querySelectorAll('img[src*="/assets/"]');
     images.forEach(img => {
+        // Ne pas encoder si déjà encodé
+        if (img.dataset.encoded === 'true') {
+            return;
+        }
+        
         const originalSrc = img.getAttribute('src');
-        if (originalSrc && originalSrc.includes('/assets/')) {
+        if (originalSrc && originalSrc.includes('/assets/') && !originalSrc.includes('%')) {
             try {
                 // Split the path to encode only the filename part
-                const url = new URL(originalSrc, window.location.origin);
-                const pathParts = url.pathname.split('/');
+                const pathParts = originalSrc.split('/');
                 const filename = pathParts[pathParts.length - 1];
                 
                 // Only encode if filename contains special characters
@@ -576,55 +580,85 @@ function encodeImageUrls() {
                     const encodedFilename = encodeURIComponent(filename);
                     pathParts[pathParts.length - 1] = encodedFilename;
                     const newPath = pathParts.join('/');
+                    
+                    // Sauvegarder le src original dans data attribute
+                    img.dataset.originalSrc = originalSrc;
+                    img.dataset.encoded = 'true';
                     img.src = newPath;
                 }
-            } catch (e) {
-                // If URL constructor fails, try manual encoding
-                try {
-                    const pathParts = originalSrc.split('/');
-                    const filename = pathParts[pathParts.length - 1];
-                    if (filename && (filename.includes(' ') || filename.includes('(') || filename.includes('@') || filename.includes('é'))) {
-                        const encodedFilename = encodeURIComponent(filename);
-                        pathParts[pathParts.length - 1] = encodedFilename;
-                        img.src = pathParts.join('/');
-                    }
-                } catch (err) {
-                    console.error('Error encoding image URL:', err);
-                }
+            } catch (err) {
+                console.error('Error encoding image URL:', err);
             }
         }
     });
 }
 
-// Run on page load
+// Exécuter immédiatement et aussi au chargement
+encodeImageUrls();
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', encodeImageUrls);
 } else {
-    encodeImageUrls();
+    // Exécuter aussi après un court délai pour les images chargées dynamiquement
+    setTimeout(encodeImageUrls, 100);
 }
 
-// Error handling for images
+// Error handling for images - avec retry et délai
+const imageRetryAttempts = new Map();
+
 document.addEventListener('error', function(e) {
     if (e.target.tagName === 'IMG') {
-        const src = e.target.src;
+        const img = e.target;
+        const src = img.src;
+        const originalSrc = img.getAttribute('src') || src;
+        
+        // Ne pas traiter les images externes (Discord CDN, etc.)
+        if (!src.includes('/assets/')) {
+            return;
+        }
+        
         console.log('Image failed to load:', src);
         
-        // Try to reload with encoded URL if it contains special characters
-        if (src && src.includes('/assets/') && !src.includes('%')) {
-            try {
-                const pathParts = src.split('/');
-                const filename = pathParts[pathParts.length - 1];
-                if (filename && (filename.includes(' ') || filename.includes('(') || filename.includes('@') || filename.includes('é'))) {
-                    const encodedFilename = encodeURIComponent(filename);
-                    pathParts[pathParts.length - 1] = encodedFilename;
-                    e.target.src = pathParts.join('/');
+        // Compteur de tentatives
+        const attempts = imageRetryAttempts.get(img) || 0;
+        
+        if (attempts < 3) {
+            imageRetryAttempts.set(img, attempts + 1);
+            
+            // Attendre un peu avant de réessayer
+            setTimeout(() => {
+                // Essayer avec le src original sauvegardé
+                const savedOriginal = img.dataset.originalSrc || originalSrc;
+                
+                // Essayer avec URL encodée si nécessaire
+                if (src && !src.includes('%') && savedOriginal) {
+                    try {
+                        const pathParts = savedOriginal.split('/');
+                        const filename = pathParts[pathParts.length - 1];
+                        
+                        if (filename && (filename.includes(' ') || filename.includes('(') || filename.includes('@') || filename.includes('é'))) {
+                            const encodedFilename = encodeURIComponent(filename);
+                            pathParts[pathParts.length - 1] = encodedFilename;
+                            const encodedPath = pathParts.join('/');
+                            img.src = encodedPath;
+                            img.dataset.encoded = 'true';
+                            return;
+                        }
+                    } catch (err) {
+                        console.error('Error encoding URL:', err);
+                    }
                 }
-            } catch (err) {
-                console.error('Error re-encoding image URL:', err);
-                e.target.style.display = 'none';
-            }
+                
+                // Réessayer avec le chemin original sauvegardé
+                if (savedOriginal && savedOriginal !== src) {
+                    img.src = savedOriginal;
+                    img.dataset.encoded = 'false';
+                }
+            }, 300 * (attempts + 1)); // Délai progressif : 300ms, 600ms, 900ms
         } else {
-            e.target.style.display = 'none';
+            // Après 3 tentatives, on log mais on ne cache pas l'image
+            console.warn('Image failed after multiple attempts:', src);
+            // Ne pas cacher - laisser l'image visible même si elle ne charge pas
         }
     }
 }, true);
@@ -661,7 +695,7 @@ if (lightbox) {
         if (images[currentImageIndex]) {
             lightboxImg.src = images[currentImageIndex].src;
             lightboxImg.alt = images[currentImageIndex].alt;
-            lightboxCaption.textContent = images[currentImageIndex].alt;
+            lightboxCaption.textContent = ''; // Pas de description
         }
     }
 

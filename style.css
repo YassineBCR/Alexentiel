@@ -801,11 +801,7 @@ body.theme-events .option-features-list i {
 }
 
 .lightbox-caption {
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  font-size: 1.1rem;
-  margin-top: 1rem;
+  display: none; /* Masquer la description */
 }
 
 .lightbox-close {
@@ -2293,8 +2289,7 @@ body.theme-events .option-features-list i {
   }
 
   .lightbox-caption {
-    font-size: 0.9rem;
-    padding: 0.5rem;
+    display: none; /* Masquer la description */
   }
 
   .footer-social {
