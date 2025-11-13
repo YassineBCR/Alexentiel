@@ -61,6 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form submission
+    // Initialize EmailJS
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init('d5C6_jqdFATq91IXv');
+    }
+
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -81,18 +86,73 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Simulate form submission
         const submitBtn = contactForm.querySelector('.submit-btn');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
         submitBtn.disabled = true;
 
-        setTimeout(() => {
-            alert('Merci pour votre message ! Nous vous contacterons bientôt.');
-            contactForm.reset();
+        // Send email using EmailJS
+        if (typeof emailjs !== 'undefined') {
+            // Format de la date si elle existe
+            let formattedDate = 'Non renseignée';
+            if (data['wedding-date']) {
+                const date = new Date(data['wedding-date']);
+                formattedDate = date.toLocaleDateString('fr-FR', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+            }
+            
+            emailjs.send('service_afmwrqb', 'template_5gm7ahj', {
+                from_name: data.name,
+                from_email: data.email,
+                phone: data.phone || 'Non renseigné',
+                wedding_date: formattedDate,
+                message: data.message,
+                to_email: 'alexentielevents@gmail.com',
+                // Format complet pour un email bien structuré
+                email_body: `
+NOUVEAU MESSAGE DE CONTACT - ALEX'ENTIEL EVENTS
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+INFORMATIONS CLIENT :
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Nom & Prénom : ${data.name}
+Email : ${data.email}
+Téléphone : ${data.phone || 'Non renseigné'}
+Date de l'événement prévue : ${formattedDate}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MESSAGE :
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${data.message}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Ce message a été envoyé depuis le formulaire de contact du site web.
+                `.trim()
+            }, 'd5C6_jqdFATq91IXv')
+            .then(function(response) {
+                alert('Merci pour votre message ! Nous vous contacterons bientôt.');
+                contactForm.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, function(error) {
+                console.error('Erreur lors de l\'envoi:', error);
+                alert('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer ou nous contacter directement par téléphone.');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        } else {
+            // Fallback si EmailJS n'est pas chargé
+            alert('Le service d\'envoi d\'email n\'est pas disponible. Veuillez nous contacter directement par téléphone ou email.');
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-        }, 2000);
+        }
     });
 
     // Intersection Observer for animations

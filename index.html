@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alex'entiel Events - Wedding Planner & Designer | Sud de la France</title>
-  <meta name="description" content="Alexandra Cochet, Wedding Planner & Designer dans le Sud de la France. L'essentiel c'est vous, Le reste c'est nous ! Formules personnalisées pour votre mariage de rêve.">
+  <title>Alex'entiel Events - Wedding Planner & Designer | Gard, Hérault, Aude, Bouches-du-Rhône, Toute la France</title>
+  <meta name="description" content="Alexandra Cochet, Wedding Planner & Designer dans le Gard (30), Hérault (34), Aude (11), Bouches-du-Rhône (13) et toute la France. L'essentiel c'est vous, Le reste c'est nous ! Formules personnalisées pour votre mariage de rêve.">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
   <!-- Navigation -->
@@ -113,24 +114,54 @@
       <div class="reviews-slider">
         <div class="reviews-track">
           <article class="review-card">
-            <span class="review-quote">“</span>
-            <p class="review-text">Alexandra a été d'une aide précieuse. Son sens du détail et sa douceur ont rendu notre mariage parfait. Nous avons pu profiter pleinement de chaque instant.</p>
-            <p class="review-author">Camille & Julien – Mariage 2025</p>
+            <span class="review-quote">"</span>
+            <p class="review-text">Alex se montre à l'écoute et de bons conseils. Elle a géré la mise en place et le rapport avec les prestataires. Nous avons pu profiter de la journée sans aucun stress. Nous avons zéro regret quant au fait de l'avoir prise comme organisatrice de mariage. Vous pouvez lui faire confiance.</p>
+            <div class="review-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="review-author">Ludivine</p>
           </article>
           <article class="review-card">
-            <span class="review-quote">“</span>
-            <p class="review-text">Merci pour cette baby shower magique ! La décoration était exactement comme nous l'imaginions et l'organisation sans fausse note.</p>
-            <p class="review-author">Laura – Baby shower</p>
+            <span class="review-quote">"</span>
+            <p class="review-text">Alexandra a été comme nous aimons le dire, la clé de voûte de notre mariage. Honnêtement, sans elle, le mariage aurait été une catastrophe... Il était facile d'appréhender l'impact d'une wedding planer, mais nous étions malgré tout très loin du compte. Nous avons trouvé auprès d'elle une épaule solide sur laquelle nous reposer entièrement. Que ce soit d'un point de vue logistique, ou humain. En amont, ou le jour J. Elle a fait preuve d'un professionnalisme, d'une disponibilité, et d'une humanité inspirants. Comme on le sait tous, le mariage est un des plus beaux jours de notre vie, mais aussi un des plus stressants. Alexandra a su trouver les mots et la douceur pour nous rassurer dans tous les moments de doute. Je ne saurais que vous la recommander de tout coeur! Marc.</p>
+            <div class="review-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="review-author">Marc</p>
           </article>
           <article class="review-card">
-            <span class="review-quote">“</span>
-            <p class="review-text">Nos 10 ans d'entreprise ont été célébrés avec élégance. L'équipe Alex'entiel a tout géré avec professionnalisme et créativité.</p>
-            <p class="review-author">Société Nova – Soirée corporate</p>
+            <span class="review-quote">"</span>
+            <p class="review-text">Nous avons eu la chance de rencontrer Alexandra sur le long chemin qu'est la préparation d'un mariage, loin d'être un long fleuve tranquille et pourtant ! Elle a su dès les premiers instants cerner nos deux personnalités et nos attentes respectives. Alexandra a fait de notre mariage l'un des plus beaux jours de notre vie. Un sens de l'organisation hors-pair, une douceur incroyable, beaucoup de bienveillance, un calme à toute épreuve. Nous avons grâce à elle pu profiter de notre journée de préparatifs dans le calme et la zénitude. Nous savions qu'elle était présente et que tout allait rouler. Quel travail remarquable pour la décoration, le résultat était somptueux, tous les éléments ont été mis en valeur. Alexandra a su faire le lien avec tous les prestataires mais aussi avec nos témoins et familles. Grâce à elle tout le monde a pu profiter à 100% de cette magnifique journée. Encore mille mercis à Alexandra sans qui notre mariage n'aurait pu être aussi merveilleux ! 🫶🏻💕</p>
+            <div class="review-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="review-author">Anne-Lise</p>
           </article>
           <article class="review-card">
-            <span class="review-quote">“</span>
-            <p class="review-text">Une fête d'anniversaire féérique ! L'arche de ballons, le buffet décoré... tout était impeccable. Nous recommandons les yeux fermés.</p>
-            <p class="review-author">Élodie – Anniversaire 40 ans</p>
+            <span class="review-quote">"</span>
+            <p class="review-text">Grâce à Alexandra nous avons pu profiter de notre mariage sans nous soucier de quoi que se soit. Nous étions dans notre bulle et nous nous sommes préoccuper de rien.
+              C'était un moment suspendu, et quoi de mieux de se laisser porter...
+              Encore Merci, merci pour ce moment Magique</p>
+            <div class="review-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="review-author">Carmen</p>
           </article>
         </div>
         <div class="reviews-dots"></div>
@@ -154,25 +185,25 @@
         <div class="gallery-track">
           <!-- Ajoutez vos photos dans le dossier assets/gallery/ -->
           <!-- Format : /assets/gallery/nom-de-votre-photo.jpg -->
-          <img src="/assets/gallery/Nimes-EcoleMariella-20Juin-WD-PhotosSylviaCalmet (159).jpg" alt="Mariage romantique">
-          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.49 (1).jpeg" alt="Décoration florale">
-          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.49" alt="Scénographie de réception">
-          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.53.jpeg" alt="Installation cérémonie laïque">
-          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.56.jpeg" alt="Table festive">
-          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.57.jpeg" alt="Couple de mariés">
-          <img src="/assets/gallery/Nimes-EcoleMariella-20Juin-WD-PhotosSylviaCalmet (157).jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/Nimes-EcoleMariella-20Juin-WD-PhotosSylviaCalmet (147).jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/Nimes-EcoleMariella-20Juin-WD-PhotosSylviaCalmet (157).jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (194).jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (158).jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (107).jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (40).jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/crédit-@idrnz-274.jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/crédit-@idrnz-83.jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/crédit-@idrnz-52.jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/crédit-@idrnz-41.jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/750_0373.jpg" alt="Couple de mariés">
-          <img src="/assets/gallery/72bdb5b1-a43a-43a9-bf29-51df276d98bf.JPG" alt="Couple de mariés">
+          <img src="/assets/gallery/Nimes-EcoleMariella-20Juin-WD-PhotosSylviaCalmet (159).jpg" alt="">
+          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.49 (1).jpeg" alt="">
+          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.49" alt="">
+          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.53.jpeg" alt="">
+          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.56.jpeg" alt="">
+          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.57.jpeg" alt="">
+          <img src="/assets/gallery/Nimes-EcoleMariella-20Juin-WD-PhotosSylviaCalmet (157).jpg" alt="">
+          <img src="/assets/gallery/Nimes-EcoleMariella-20Juin-WD-PhotosSylviaCalmet (147).jpg" alt="">
+          <img src="/assets/gallery/Nimes-EcoleMariella-20Juin-WD-PhotosSylviaCalmet (157).jpg" alt="">
+          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (194).jpg" alt="">
+          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (158).jpg" alt="">
+          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (107).jpg" alt="">
+          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (40).jpg" alt="">
+          <img src="/assets/gallery/crédit-@idrnz-274.jpg" alt="">
+          <img src="/assets/gallery/crédit-@idrnz-83.jpg" alt="">
+          <img src="/assets/gallery/crédit-@idrnz-52.jpg" alt="">
+          <img src="/assets/gallery/crédit-@idrnz-41.jpg" alt="">
+          <img src="/assets/gallery/750_0373.jpg" alt="">
+          <img src="/assets/gallery/72bdb5b1-a43a-43a9-bf29-51df276d98bf.JPG" alt="">
         </div>
       </div>
     </div>
@@ -207,7 +238,8 @@
           <div class="contact-card">
             <i class="fas fa-map-marker-alt"></i>
             <h3>Zone d'intervention</h3>
-            <p class="zone-info">30 (Gard), 34 (Hérault)</p>
+            <p class="zone-info">30 (Gard), 34 (Hérault), 11 (Aude), 13 (Bouches-du-Rhône)</p>
+            <p class="zone-info" style="font-size: 0.9rem; margin-top: 0.5rem;">Toute la France</p>
           </div>
         </div>
 
@@ -257,7 +289,8 @@
         
         <div class="footer-contact">
           <p>Alexandra Cochet - Wedding Planner & Designer</p>
-          <p>Zone d'intervention : 30 (Gard), 34 (Hérault)</p>
+          <p>Zone d'intervention : 30 (Gard), 34 (Hérault), 11 (Aude), 13 (Bouches-du-Rhône) - Toute la France</p>
+          <p>
             <a href="tel:+33783320107">07.83.32.01.07</a> | 
             <a href="mailto:alexentielevents@gmail.com">alexentielevents@gmail.com</a>
           </p>
@@ -282,7 +315,7 @@
       <div class="footer-bottom">
         <p>&copy; 2024 Alex'entiel Events. Tous droits réservés.</p>
         <p class="footer-slogan">"L'essentiel c'est vous, Le reste c'est nous !"</p>
-        <p class="footer-credits">Les crédits photos : Idrn, Anaïs Armand-Pétrier, Sylvia Calmet</p>
+        <p class="footer-credits">Les crédits photos : Idrn, Anaïs Armand-Pétrier, Sylvia Calmet, Lionel Bonnet</p>
       </div>
     </div>
   </footer>
