@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie - Alex'entiel Events</title>
+  <meta name="description" content="Découvrez notre galerie complète de mariages et événements. Toutes nos créations et décors en images.">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a class="nav-logo" href="/#accueil" aria-label="Alex'entiel Events - Accueil">
+        <img src="/assets/Alexentiel.png" alt="Logo Alex'entiel Events">
+      </a>
+      <ul class="nav-menu">
+        <li><a href="/#accueil" class="nav-link">Accueil</a></li>
+        <li><a href="/#presentation" class="nav-link">Présentation</a></li>
+        <li><a href="/mariage" class="nav-link">Mariage</a></li>
+        <li><a href="/autre-evenement" class="nav-link">Autres événements</a></li>
+        <li><a href="/galerie" class="nav-link">Galerie</a></li>
+        <li><a href="/#contact" class="nav-link contact-btn">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Gallery Section -->
+  <section class="full-gallery">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Galerie complète</h2>
+        <div class="title-decoration">
+          <i class="fas fa-camera"></i>
+        </div>
+        <p class="section-subtitle">Découvrez toutes nos créations et décors en images</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="/assets/gallery/Nimes-EcoleMariella-20Juin-WD-PhotosSylviaCalmet (159).jpg" alt="Mariage romantique" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.49 (1).jpeg" alt="Décoration florale" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.49.jpeg" alt="Scénographie de réception" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.53.jpeg" alt="Installation cérémonie laïque" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.56.jpeg" alt="Table festive" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/WhatsApp Image 2025-09-17 at 12.35.57.jpeg" alt="Décoration événement" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/Nimes-EcoleMariella-20Juin-WD-PhotosSylviaCalmet (157).jpg" alt="Mariage élégant" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/Nimes-EcoleMariella-20Juin-WD-PhotosSylviaCalmet (147).jpg" alt="Cérémonie" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (194).jpg" alt="Réception mariage" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (158).jpg" alt="Décoration table" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (107).jpg" alt="Mariage champêtre" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/Mariella-11Juin2025-DomaineArbaud-PhotosSylviaCalmet (40).jpg" alt="Détails décoration" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/crédit-@idrnz-274.jpg" alt="Photographie mariage" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/crédit-@idrnz-83.jpg" alt="Moment émotion" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/crédit-@idrnz-52.jpg" alt="Cérémonie laïque" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/crédit-@idrnz-41.jpg" alt="Décoration romantique" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/750_0373.jpg" alt="Événement" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="/assets/gallery/72bdb5b1-a43a-43a9-bf29-51df276d98bf.JPG" alt="Création décorative" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <span class="lightbox-prev">&#10094;</span>
+    <span class="lightbox-next">&#10095;</span>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span class="logo-main">Alex'entiel</span>
+          <span class="logo-sub">Events</span>
+        </div>
+        
+        <div class="footer-contact">
+          <p>Alexandra Cochet - Wedding Planner & Designer</p>
+          <p>Zone d'intervention : 30 (Gard), 34 (Hérault)</p>
+            <a href="tel:+33783320107">07.83.32.01.07</a> | 
+            <a href="mailto:alexentielevents@gmail.com">alexentielevents@gmail.com</a>
+          </p>
+        </div>
+      </div>
+      
+      <div class="footer-social">
+        <a href="https://www.facebook.com/people/Alexentiel-Events/61576993340284/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/lesmariagesdalex/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@lesmariagesdalex?lang=en" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="https://www.mariages.net/organisation-mariage/alexentiel-events--e383985" target="_blank" rel="noopener noreferrer" aria-label="Mariage.net">
+          <i class="fas fa-heart"></i>
+        </a>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Alex'entiel Events. Tous droits réservés.</p>
+        <p class="footer-slogan">"L'essentiel c'est vous, Le reste c'est nous !"</p>
+        <p class="footer-credits">Les crédits photos : Idrn, Anaïs Armand-Pétrier, Sylvia Calmet</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

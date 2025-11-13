@@ -214,19 +214,129 @@ document.addEventListener('DOMContentLoaded', function() {
         reviewSlider.addEventListener('mouseenter', () => clearInterval(reviewInterval));
         reviewSlider.addEventListener('mouseleave', restartReviewsInterval);
 
+        // Drag/Swipe functionality for reviews
+        let isDraggingReview = false;
+        let startXReview = 0;
+        let startScrollReview = 0;
+        let threshold = 50; // Minimum distance to trigger swipe
+
+        const handleReviewStart = (e) => {
+            isDraggingReview = true;
+            startXReview = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            startScrollReview = currentReview;
+            clearInterval(reviewInterval);
+            reviewTrack.style.transition = 'none';
+        };
+
+        const handleReviewMove = (e) => {
+            if (!isDraggingReview) return;
+            e.preventDefault();
+            const currentX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const diff = startXReview - currentX;
+            const percentage = diff / reviewSlider.offsetWidth;
+            const offset = startScrollReview + percentage;
+            
+            // Constrain offset
+            const constrainedOffset = Math.max(0, Math.min(reviewCards.length - 1, offset));
+            reviewTrack.style.transform = `translateX(-${constrainedOffset * 100}%)`;
+        };
+
+        const handleReviewEnd = (e) => {
+            if (!isDraggingReview) return;
+            isDraggingReview = false;
+            reviewTrack.style.transition = '';
+            
+            const endX = e.type.includes('touch') ? e.changedTouches[0].clientX : e.clientX;
+            const diff = startXReview - endX;
+            
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0 && currentReview < reviewCards.length - 1) {
+                    currentReview++;
+                } else if (diff < 0 && currentReview > 0) {
+                    currentReview--;
+                }
+            }
+            
+            updateReviewsSlider();
+            restartReviewsInterval();
+        };
+
+        reviewSlider.addEventListener('mousedown', handleReviewStart);
+        reviewSlider.addEventListener('touchstart', handleReviewStart, { passive: false });
+        reviewSlider.addEventListener('mousemove', handleReviewMove);
+        reviewSlider.addEventListener('touchmove', handleReviewMove, { passive: false });
+        reviewSlider.addEventListener('mouseup', handleReviewEnd);
+        reviewSlider.addEventListener('touchend', handleReviewEnd);
+        reviewSlider.addEventListener('mouseleave', handleReviewEnd);
+        reviewSlider.style.cursor = 'grab';
+        reviewSlider.style.userSelect = 'none';
+
         updateReviewsSlider();
         startReviewsInterval();
     }
 
-    // Gallery duplication for seamless scroll
+    // Gallery duplication for seamless scroll and drag/swipe
     const galleryTrack = document.querySelector('.gallery-track');
     if (galleryTrack) {
+        const galleryWrapper = galleryTrack.closest('.gallery-wrapper');
         const galleryItems = Array.from(galleryTrack.children);
         galleryItems.forEach(item => {
             const clone = item.cloneNode(true);
             clone.setAttribute('aria-hidden', 'true');
             galleryTrack.appendChild(clone);
         });
+
+        // Drag/Swipe functionality for gallery
+        let isDragging = false;
+        let startX = 0;
+        let scrollLeft = 0;
+
+        const handleStart = (e) => {
+            isDragging = true;
+            startX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            scrollLeft = galleryWrapper.scrollLeft;
+            galleryWrapper.style.cursor = 'grabbing';
+            galleryWrapper.style.scrollBehavior = 'auto';
+            galleryTrack.style.animationPlayState = 'paused';
+        };
+
+        const handleMove = (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+            const walk = (x - startX) * 2;
+            galleryWrapper.scrollLeft = scrollLeft - walk;
+        };
+
+        const handleEnd = () => {
+            isDragging = false;
+            galleryWrapper.style.cursor = 'grab';
+            galleryWrapper.style.scrollBehavior = 'smooth';
+            // Resume animation after a delay if not hovering
+            setTimeout(() => {
+                if (!galleryWrapper.matches(':hover')) {
+                    galleryTrack.style.animationPlayState = 'running';
+                }
+            }, 100);
+        };
+
+        galleryWrapper.addEventListener('mousedown', handleStart);
+        galleryWrapper.addEventListener('touchstart', handleStart, { passive: false });
+        galleryWrapper.addEventListener('mousemove', handleMove);
+        galleryWrapper.addEventListener('touchmove', handleMove, { passive: false });
+        galleryWrapper.addEventListener('mouseup', handleEnd);
+        galleryWrapper.addEventListener('touchend', handleEnd);
+        galleryWrapper.addEventListener('mouseleave', handleEnd);
+        galleryWrapper.style.cursor = 'grab';
+        galleryWrapper.style.userSelect = 'none';
+
+        // Enable horizontal scroll with mouse wheel
+        galleryWrapper.addEventListener('wheel', (e) => {
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                e.preventDefault();
+                galleryWrapper.scrollLeft += e.deltaY;
+            }
+        }, { passive: false });
     }
 
     // Loading animation for images
@@ -396,3 +506,81 @@ document.addEventListener('error', function(e) {
         console.log('Image failed to load:', e.target.src);
     }
 }, true);
+
+// Lightbox functionality
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.querySelector('.lightbox-caption');
+const lightboxClose = document.querySelector('.lightbox-close');
+const lightboxPrev = document.querySelector('.lightbox-prev');
+const lightboxNext = document.querySelector('.lightbox-next');
+
+if (lightbox) {
+    const galleryItems = document.querySelectorAll('.gallery-item img');
+    let currentImageIndex = 0;
+    const images = Array.from(galleryItems);
+
+    // Open lightbox
+    function openLightbox(index) {
+        currentImageIndex = index;
+        updateLightboxImage();
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Close lightbox
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Update lightbox image
+    function updateLightboxImage() {
+        if (images[currentImageIndex]) {
+            lightboxImg.src = images[currentImageIndex].src;
+            lightboxImg.alt = images[currentImageIndex].alt;
+            lightboxCaption.textContent = images[currentImageIndex].alt;
+        }
+    }
+
+    // Next image
+    function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        updateLightboxImage();
+    }
+
+    // Previous image
+    function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        updateLightboxImage();
+    }
+
+    // Event listeners
+    galleryItems.forEach((img, index) => {
+        img.addEventListener('click', () => openLightbox(index));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightboxNext.addEventListener('click', nextImage);
+    lightboxPrev.addEventListener('click', prevImage);
+
+    // Close on background click
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            }
+        }
+    });
+}
