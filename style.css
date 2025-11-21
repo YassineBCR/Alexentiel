@@ -550,13 +550,6 @@ body.theme-events .option-features-list i {
   border-radius: 20px;
   box-shadow: 0 15px 40px rgba(216, 27, 96, 0.1);
   background: white;
-  cursor: grab;
-  -webkit-overflow-scrolling: touch;
-  user-select: none;
-}
-
-.reviews-slider:active {
-  cursor: grabbing;
 }
 
 .reviews-track {
@@ -629,6 +622,66 @@ body.theme-events .option-features-list i {
 .review-dot.active {
   background: var(--primary-pink);
   transform: scale(1.2);
+}
+
+.review-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--primary-pink);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(216, 27, 96, 0.3);
+}
+
+.review-nav:hover {
+  background: var(--accent-pink);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(216, 27, 96, 0.4);
+}
+
+.review-nav:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.review-nav i {
+  font-size: 1.2rem;
+}
+
+.review-nav-prev {
+  left: 15px;
+}
+
+.review-nav-next {
+  right: 15px;
+}
+
+@media (max-width: 768px) {
+  .review-nav {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .review-nav i {
+    font-size: 1rem;
+  }
+  
+  .review-nav-prev {
+    left: 10px;
+  }
+  
+  .review-nav-next {
+    right: 10px;
+  }
 }
 
 .gallery {

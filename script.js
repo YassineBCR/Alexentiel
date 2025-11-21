@@ -274,62 +274,26 @@ Ce message a été envoyé depuis le formulaire de contact du site web.
         reviewSlider.addEventListener('mouseenter', () => clearInterval(reviewInterval));
         reviewSlider.addEventListener('mouseleave', restartReviewsInterval);
 
-        // Drag/Swipe functionality for reviews
-        let isDraggingReview = false;
-        let startXReview = 0;
-        let startScrollReview = 0;
-        let threshold = 50; // Minimum distance to trigger swipe
+        // Navigation arrows functionality
+        const prevButton = reviewSlider.querySelector('.review-nav-prev');
+        const nextButton = reviewSlider.querySelector('.review-nav-next');
 
-        const handleReviewStart = (e) => {
-            isDraggingReview = true;
-            startXReview = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-            startScrollReview = currentReview;
-            clearInterval(reviewInterval);
-            reviewTrack.style.transition = 'none';
-        };
-
-        const handleReviewMove = (e) => {
-            if (!isDraggingReview) return;
-            e.preventDefault();
-            const currentX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
-            const diff = startXReview - currentX;
-            const percentage = diff / reviewSlider.offsetWidth;
-            const offset = startScrollReview + percentage;
-            
-            // Constrain offset
-            const constrainedOffset = Math.max(0, Math.min(reviewCards.length - 1, offset));
-            reviewTrack.style.transform = `translateX(-${constrainedOffset * 100}%)`;
-        };
-
-        const handleReviewEnd = (e) => {
-            if (!isDraggingReview) return;
-            isDraggingReview = false;
-            reviewTrack.style.transition = '';
-            
-            const endX = e.type.includes('touch') ? e.changedTouches[0].clientX : e.clientX;
-            const diff = startXReview - endX;
-            
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0 && currentReview < reviewCards.length - 1) {
-                    currentReview++;
-                } else if (diff < 0 && currentReview > 0) {
-                    currentReview--;
-                }
-            }
-            
+        const prevReview = () => {
+            currentReview = (currentReview - 1 + reviewCards.length) % reviewCards.length;
             updateReviewsSlider();
             restartReviewsInterval();
         };
 
-        reviewSlider.addEventListener('mousedown', handleReviewStart);
-        reviewSlider.addEventListener('touchstart', handleReviewStart, { passive: false });
-        reviewSlider.addEventListener('mousemove', handleReviewMove);
-        reviewSlider.addEventListener('touchmove', handleReviewMove, { passive: false });
-        reviewSlider.addEventListener('mouseup', handleReviewEnd);
-        reviewSlider.addEventListener('touchend', handleReviewEnd);
-        reviewSlider.addEventListener('mouseleave', handleReviewEnd);
-        reviewSlider.style.cursor = 'grab';
-        reviewSlider.style.userSelect = 'none';
+        if (prevButton) {
+            prevButton.addEventListener('click', prevReview);
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                nextReview();
+                restartReviewsInterval();
+            });
+        }
 
         updateReviewsSlider();
         startReviewsInterval();
